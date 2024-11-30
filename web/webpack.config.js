@@ -4,7 +4,6 @@ const CopyPlugin = require("copy-webpack-plugin");
 const webpack = require("webpack");
 
 const appDirectory = path.resolve(__dirname, "../");
-const babelConfig = path.resolve(appDirectory, "babel.conrequirefig.js");
 
 const babelLoaderConfiguration = {
   test: /\.(tsx|ts|jsx|js)?$/,
@@ -17,8 +16,25 @@ const babelLoaderConfiguration = {
     loader: "babel-loader",
     options: {
       cacheDirectory: true,
-      presets: babelConfig.presets,
-      plugins: ["react-native-web", ...(babelConfig.plugins || [])],
+      presets: [
+        // "module:@react-native/babel-preset",
+        [
+          "@babel/preset-env",
+          {
+            useBuiltIns: "usage",
+            corejs: 3,
+          },
+        ],
+        ["@babel/preset-react", { runtime: "automatic" }],
+      ],
+      plugins: [
+        "react-native-web",
+        "@babel/plugin-transform-export-namespace-from",
+        "react-native-reanimated/plugin",
+        "@babel/plugin-transform-class-properties",
+        "@babel/plugin-transform-private-methods",
+        "@babel/plugin-transform-private-property-in-object",
+      ],
     },
   },
 };
@@ -35,11 +51,11 @@ const imageLoaderConfiguration = {
 };
 
 module.exports = {
-  entry: [path.resolve(appDirectory, "index.web.ts")],
+  entry: ["core-js/stable", "regenerator-runtime/runtime", path.resolve(appDirectory, "index.web.ts")],
 
   output: {
     filename: "bundle.web.js",
-    path: path.resolve(appDirectory, "dist"),
+    path: path.resolve(appDirectory, "build"),
   },
 
   module: {
