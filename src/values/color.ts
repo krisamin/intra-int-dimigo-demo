@@ -60,6 +60,41 @@ type Color = {
     strong: string;
   };
 };
+type ColorPath =
+  | "background.root.regular"
+  | "background.root.strong"
+  | "background.fill.regular"
+  | "background.fill.strong"
+  | "background.fill.inverted"
+  | "background.group.regular"
+  | "background.group.strong"
+  | "background.group.interactive"
+  | "background.state.hover"
+  | "background.state.focussed"
+  | "background.state.pressed"
+  | "border.divider"
+  | "border.outline"
+  | "content.inverted"
+  | "content.static"
+  | "content.neutral.primary"
+  | "content.neutral.secondary"
+  | "content.neutral.tertiary"
+  | "content.neutral.quarternary"
+  | "semantic.brand"
+  | "semantic.brandTranslucent"
+  | "semantic.status.success"
+  | "semantic.status.successTranslucent"
+  | "semantic.status.warning"
+  | "semantic.status.warningTranslucent"
+  | "semantic.status.danger"
+  | "semantic.status.dangerTranslucent"
+  | "semantic.calendar.exam"
+  | "semantic.calendar.home"
+  | "semantic.calendar.vacation"
+  | "semantic.calendar.event"
+  | "semantic.calendar.stay"
+  | "dim.regular"
+  | "dim.strong";
 type ThemeColor = {
   light: Color;
   dark: Color;
@@ -197,3 +232,4 @@ const coreColor = makeColor(coreTheme);
 const dimigoColor = makeColor(dimigoTheme);
 const sunrinColor = makeColor(sunrinTheme);
 export { coreColor, dimigoColor, sunrinColor };
+export type { Color, ColorPath, ThemeColor };

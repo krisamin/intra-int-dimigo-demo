@@ -1,10 +1,11 @@
-import { Text, View } from "react-native";
+import { App } from "app";
+import { Provider } from "provider";
 
 const Root = () => {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text style={{ fontFamily: "SUIT-Medium", fontSize: 20 }}>Hello, React Native!</Text>
-    </View>
+    <Provider>
+      <App />
+    </Provider>
   );
 };
 
