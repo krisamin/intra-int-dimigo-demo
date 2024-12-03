@@ -8,21 +8,22 @@ import { text } from "values";
 
 interface TextProps {
   children: React.ReactNode;
-  type: TextPath;
-  color: ColorPath;
+  type?: TextPath;
+  color?: ColorPath;
   align?: "left" | "center" | "right";
   style?: StyleProp<TextStyle>;
 }
 const Text: React.FC<TextProps> = ({ children, type, color, align, style }) => {
   const { decodeColor } = useTheme();
 
-  const [size, weight] = type.split(".") as [keyof typeof text, string];
-  const textStyle = text[size][weight as keyof (typeof text)[typeof size]];
+  const [size, weight] = (type || "").split(".") as [keyof typeof text, string];
+  const textStyle = type && text[size][weight as keyof (typeof text)[typeof size]];
 
   return (
     <RNText
       style={[
-        { includeFontPadding: false, color: decodeColor(color) },
+        { includeFontPadding: false },
+        color && { color: decodeColor(color) },
         align && { textAlign: align },
         textStyle,
         style,

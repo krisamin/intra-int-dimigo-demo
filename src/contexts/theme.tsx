@@ -3,21 +3,16 @@ import React from "react";
 import { type Color, type ColorPath, dimigoColor } from "values";
 
 import { Appearance, View } from "react-native";
-
-type DecodeColor = (path: ColorPath) => string;
+import { decodePath } from "utils/funcs";
 
 type Scheme = "light" | "dark";
-const ThemeContext = React.createContext<{
+interface ThemeContextValue {
   scheme: Scheme;
   color: Color;
   screen: { width: number; height: number };
-  decodeColor: DecodeColor;
-}>({
-  scheme: "" as Scheme,
-  color: {} as Color,
-  screen: {} as { width: number; height: number },
-  decodeColor: {} as DecodeColor,
-});
+  decodeColor: (path: ColorPath) => string;
+}
+const ThemeContext = React.createContext({} as ThemeContextValue);
 
 interface ThemeProviderProps {
   children: React.ReactNode;
@@ -38,20 +33,7 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     return dimigoColor[scheme];
   }, [scheme]);
 
-  type ColorRecord = Record<string, string | Record<string, string>>;
-  const decodeColor = React.useCallback(
-    (path: ColorPath): string => {
-      const keys = path.split(".");
-      const result = keys.reduce(
-        (acc, key) => {
-          return acc[key as keyof typeof acc] as ColorRecord;
-        },
-        color as unknown as ColorRecord,
-      );
-      return result as unknown as string;
-    },
-    [color],
-  );
+  const decodeColor = React.useCallback((path: ColorPath) => decodePath(color, path), [color]);
 
   return (
     <View

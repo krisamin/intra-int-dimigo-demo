@@ -50,32 +50,62 @@ const imageLoaderConfiguration = {
   },
 };
 
-module.exports = {
-  entry: ["core-js/stable", "regenerator-runtime/runtime", path.resolve(appDirectory, "index.web.ts")],
+module.exports = (argv) => {
+  return {
+    entry: ["core-js/stable", "regenerator-runtime/runtime", path.resolve(appDirectory, "index.web.ts")],
 
-  output: {
-    filename: "bundle.web.js",
-    path: path.resolve(appDirectory, "build"),
-  },
-
-  module: {
-    rules: [babelLoaderConfiguration, imageLoaderConfiguration],
-  },
-
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.resolve(appDirectory, "web/index.html"),
-    }),
-    new webpack.HotModuleReplacementPlugin(),
-    new CopyPlugin({
-      patterns: [{ from: path.resolve(appDirectory, "web/public"), to: "" }],
-    }),
-  ],
-
-  resolve: {
-    alias: {
-      "react-native$": "react-native-web",
+    output: {
+      clean: true,
+      publicPath: "/",
+      path: path.resolve(appDirectory, "build/web"),
+      filename: "[name].[chunkhash].js",
+      sourceMapFilename: "[name].[chunkhash].map",
+      chunkFilename: "[id].[chunkhash].js",
     },
-    extensions: [".web.tsx", ".web.ts", ".tsx", ".ts", ".web.jsx", ".web.js", ".jsx", ".js"],
-  },
+
+    module: {
+      rules: [babelLoaderConfiguration, imageLoaderConfiguration],
+    },
+
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: path.resolve(appDirectory, "web/index.html"),
+      }),
+      new CopyPlugin({
+        patterns: [{ from: path.resolve(appDirectory, "web/public"), to: "" }],
+      }),
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.DefinePlugin({
+        __DEV__: argv.mode !== "production" || true,
+        process: { env: {} },
+      }),
+    ],
+
+    resolve: {
+      alias: {
+        "react-native$": "react-native-web",
+      },
+      extensions: [".web.tsx", ".web.ts", ".tsx", ".ts", ".web.jsx", ".web.js", ".jsx", ".js"],
+    },
+
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          commons: {
+            test: /[\\/]node_modules[\\/]/,
+            name: "vendor",
+            chunks: "initial",
+          },
+        },
+      },
+    },
+
+    devServer: {
+      port: 8080,
+      historyApiFallback: {
+        index: "/",
+        "**/*": "/index.html",
+      },
+    },
+  };
 };

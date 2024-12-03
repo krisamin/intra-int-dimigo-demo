@@ -1,12 +1,17 @@
-import { App } from "app";
+import { Navigation } from "navigations";
 import { Provider } from "provider";
 
-const Root = () => {
+const App = () => {
   return (
     <Provider>
-      <App />
+      <Navigation
+        linking={{
+          enabled: "auto",
+          prefixes: ["http://localhost:8080"],
+        }}
+      />
     </Provider>
   );
 };
 
-export { Root };
+export { App };
