@@ -1,17 +1,25 @@
-import { Navigation } from "navigations";
-import { Provider } from "provider";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
-const App = () => {
+import { App } from "app";
+import { Config } from "config";
+import { AuthProvider } from "contexts/auth";
+import { ThemeProvider } from "contexts/theme";
+
+const Provider = () => {
   return (
-    <Provider>
-      <Navigation
-        linking={{
-          enabled: "auto",
-          prefixes: ["http://localhost:8080"],
-        }}
-      />
-    </Provider>
+    <Config>
+      <GestureHandlerRootView>
+        <SafeAreaProvider>
+          <AuthProvider>
+            <ThemeProvider>
+              <App />
+            </ThemeProvider>
+          </AuthProvider>
+        </SafeAreaProvider>
+      </GestureHandlerRootView>
+    </Config>
   );
 };
 
-export { App };
+export { Provider };

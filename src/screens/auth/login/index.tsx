@@ -7,7 +7,7 @@ const LoginScreen = () => {
   const { setAuth } = useAuth();
 
   return (
-    <VStack fill align="center" justify="center" background="background.root.regular">
+    <VStack fill align="center" justify="center">
       <Text type="title.strong" color="content.neutral.primary">
         Hello, <Text color="semantic.brand">React Native!</Text>
       </Text>

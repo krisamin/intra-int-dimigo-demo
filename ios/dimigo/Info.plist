@@ -63,5 +63,11 @@
 		<string>SUIT-SemiBold.ttf</string>
 		<string>SUIT-Thin.ttf</string>
 	</array>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>UIUserInterfaceStyle</key>
+	<string>Automatic</string>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
 </dict>
 </plist>

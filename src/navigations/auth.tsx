@@ -8,6 +8,7 @@ const AuthStack = createNativeStackNavigator({
   },
   screenOptions: {
     headerShown: false,
+    animation: "none",
   },
 });
 
