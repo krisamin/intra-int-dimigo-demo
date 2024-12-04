@@ -1,4 +1,4 @@
-import { DarkTheme, DefaultTheme } from "@react-navigation/native";
+import { DefaultTheme } from "@react-navigation/native";
 
 import { useTheme } from "contexts/theme";
 import { Navigation } from "navigations";
@@ -21,17 +21,11 @@ const App = () => {
         enabled: "auto",
         prefixes: ["http://localhost:8080"],
       }}
-      theme={
-        scheme === "dark"
-          ? {
-              ...DarkTheme,
-              colors,
-            }
-          : {
-              ...DefaultTheme,
-              colors,
-            }
-      }
+      theme={{
+        dark: scheme === "dark",
+        colors,
+        fonts: DefaultTheme.fonts,
+      }}
     />
   );
 };

@@ -84,6 +84,7 @@ module.exports = (argv) => {
     resolve: {
       alias: {
         "react-native$": "react-native-web",
+        "react-native-svg": "react-native-svg-web",
       },
       extensions: [".web.tsx", ".web.ts", ".tsx", ".ts", ".web.jsx", ".web.js", ".jsx", ".js"],
     },

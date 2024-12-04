@@ -1,15 +1,20 @@
 import React from "react";
 
-import { type Color, type ColorPath, dimigoColor } from "values";
+import type { EdgeInsets } from "react-native-safe-area-context";
+import type { Color, ColorPath } from "values";
 
 import { Appearance, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+
 import { decodePath } from "utils/funcs";
+import { dimigoColor } from "values";
 
 type Scheme = "light" | "dark";
 interface ThemeContextValue {
   scheme: Scheme;
   color: Color;
   screen: { width: number; height: number };
+  insets: EdgeInsets;
   decodeColor: (path: ColorPath) => string;
 }
 const ThemeContext = React.createContext({} as ThemeContextValue);
@@ -18,6 +23,8 @@ interface ThemeProviderProps {
   children: React.ReactNode;
 }
 const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
+  const insets = useSafeAreaInsets();
+
   const [screen, setScreen] = React.useState({ width: 0, height: 0 });
   const [scheme, setScheme] = React.useState<Scheme>(Appearance.getColorScheme() || "light");
 
@@ -47,6 +54,7 @@ const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
           scheme,
           color,
           screen,
+          insets,
           decodeColor,
         }}>
         {children}

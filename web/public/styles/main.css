@@ -43,6 +43,20 @@
   src: url("../fonts/SUIT-Heavy.woff2") format("woff2");
 }
 
+:root {
+  --background-color: rgb(255, 255, 255);
+  --app-background-color: rgb(255, 255, 255);
+  --outline-color: rgba(46, 31, 36, 0.12);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: rgb(15, 14, 14);
+    --app-background-color: rgb(15, 14, 14);
+    --outline-color: rgba(245, 240, 242, 0.08);
+  }
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -55,6 +69,7 @@ body {
   padding: 0;
   margin: 0;
   overflow: hidden;
+  background-color: var(--background-color);
 }
 
 body {
@@ -74,8 +89,10 @@ body {
   max-height: 850px;
   width: 100%;
   max-width: 400px;
-  border-radius: 32px;
+  border-radius: 24px;
   overflow: hidden;
+  border: 8px solid var(--outline-color);
+  background-color: var(--app-background-color);
 }
 
 @media (max-width: 500px) {

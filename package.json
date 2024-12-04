@@ -26,6 +26,7 @@
     "react-native-safe-area-context": "^4.14.0",
     "react-native-screens": "4.1.0",
     "react-native-svg": "^15.9.0",
+    "react-native-svg-web": "^1.0.9",
     "react-native-web": "^0.19.13",
     "regenerator-runtime": "^0.14.1"
   },
