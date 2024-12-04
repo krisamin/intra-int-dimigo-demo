@@ -518,7 +518,7 @@
 				DEVELOPMENT_TEAM = 55RQQG4L55;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = dimigo/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "디미고 인트";
+				INFOPLIST_KEY_CFBundleDisplayName = "DimiInt";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -548,7 +548,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 55RQQG4L55;
 				INFOPLIST_FILE = dimigo/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "디미고 인트";
+				INFOPLIST_KEY_CFBundleDisplayName = "DimiInt";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (

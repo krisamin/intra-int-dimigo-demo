@@ -37,7 +37,7 @@ const lineHeight: TextSize = {
 const weight = {
   weak: "SUIT-Regular",
   regular: "SUIT-Medium",
-  strong: "SUIT-Semibold",
+  strong: "SUIT-SemiBold",
 };
 
 type TextPath =

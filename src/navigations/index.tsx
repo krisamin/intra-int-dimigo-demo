@@ -29,6 +29,7 @@ const RootStack = createNativeStackNavigator({
   screenOptions: {
     headerShown: false,
     animation: "none",
+    title: "DimiInt",
   },
 });
 

@@ -1,12 +1,7 @@
 import { Icon } from "components/assets";
 import { HStack, Text, VStack } from "components/patterns";
-import { useTheme } from "contexts/theme";
 
 const HomeScreen = () => {
-  const { insets } = useTheme();
-
-  console.log(insets.bottom);
-
   return (
     <VStack fill align="center" justify="center" gap={8}>
       <Text type="title.strong" color="content.neutral.primary">
